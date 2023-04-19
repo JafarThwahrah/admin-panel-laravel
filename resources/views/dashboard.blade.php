@@ -14,11 +14,11 @@
                     <h2 class="p-3 text-lg font-bold">Admin Panel</h2>
                     <hr>
 
-                    <a href="/dashboard" class="p-3">
+                    <a href="/dashboard" class="p-3 hover:bg-gray-500 text-white rounded-md">
                         <span style="color:#1D2A4D;">Companies</span>
                     </a>
                     <hr>
-                    <a href="/dashboard/employees" class="p-3">
+                    <a href="/dashboard/employees" class="p-3 hover:bg-gray-500 text-white rounded-md">
                         <span style="color:#1D2A4D;">Employees</span>
                     </a>
 
