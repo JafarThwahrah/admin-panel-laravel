@@ -12,7 +12,6 @@
 
         @if (session('mssg'))
             <div class="flex justify-center">
-
                 <h3 class="bg-green-400 text-white p-3 rounded-md">{{ session('mssg') }}</h3>
             </div>
         @endif
@@ -101,6 +100,9 @@
         </div>
 
     </div>
+
+    {{-- Table Section --}}
+
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-black text-white">
@@ -162,8 +164,6 @@
                                     onClick="return confirm('Do you really want to delete');"><i
                                         class="fa-solid fa-trash p-3 bg-red-500 rounded-md m-1 text-white"></i></button>
                             </form>
-
-
                         </td>
                     </tr>
                 @endforeach

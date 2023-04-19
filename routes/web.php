@@ -37,9 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/dashboard/companies/{id}', [CompanyController::class, 'destroy'])->name('company.destroy');
     Route::patch('/dashboard/companies/{id}', [CompanyController::class, 'update'])->name('company.update');
     Route::get('/dashboard/companies/view/{id}', [CompanyController::class, 'show'])->name('company.show');
-
-    //edit company form
-    Route::get('/dashboard/companies/edit/{id}', [CompanyController::class, 'edit'])->name('company.edit');
+    Route::get('/dashboard/companies/edit/{id}', [CompanyController::class, 'edit'])->name('company.edit'); //edit company form
     //companiesRoutes end
 
 
@@ -49,9 +47,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/dashboard/employees/{id}', [EmployeeController::class, 'destroy'])->name('employee.destroy');
     Route::patch('/dashboard/employees/{id}', [EmployeeController::class, 'update'])->name('employee.update');
     Route::get('/dashboard/employees/view/{id}', [EmployeeController::class, 'show'])->name('employee.show');
-
-    //edit employee form
-    Route::get('/dashboard/employees/edit/{id}', [EmployeeController::class, 'edit'])->name('employee.edit');
+    Route::get('/dashboard/employees/edit/{id}', [EmployeeController::class, 'edit'])->name('employee.edit'); //edit employee form
     //employeesRoutes end
 
 });
