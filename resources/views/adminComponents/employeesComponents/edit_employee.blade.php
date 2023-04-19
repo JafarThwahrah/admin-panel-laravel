@@ -1,16 +1,16 @@
 <x-app-layout>
     <div class="py-12">
-
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li class="text-red-600 font-bold text-center p-2">{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="flex justify-center">
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li class="text-red-600 font-bold">{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+
             <div class="w-2/5 p-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <form class="space-y-6" action="/dashboard/employees/{{ $employee->id }}" method="POST"
                     enctype="multipart/form-data">
