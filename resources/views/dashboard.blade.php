@@ -1,3 +1,7 @@
+@php
+    $tabs_style = 'p-3 text-black hover:bg-gray-500 hover:text-white hover:font-bold rounded-md ease-in-out duration-300';
+@endphp
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -11,17 +15,22 @@
             <div class="w-1/4 bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 flex flex-col">
 
-                    <h2 class="p-3 text-lg font-bold">Admin Panel</h2>
+                    <h2 class="p-3 text-2xl font-bold">Admin Panel</h2>
                     <hr>
 
-                    <a href="/dashboard" class="p-3 hover:bg-gray-500 text-white rounded-md">
-                        <span style="color:#1D2A4D;">Companies</span>
+                    <a href="/dashboard" class="{{ $tabs_style }}">
+                        Companies
                     </a>
                     <hr>
-                    <a href="/dashboard/employees" class="p-3 hover:bg-gray-500 text-white rounded-md">
-                        <span style="color:#1D2A4D;">Employees</span>
+                    <a href="/dashboard/employees" class="{{ $tabs_style }}">
+                        Employees
                     </a>
-
+                    <hr>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit"
+                            class="p-3 text-left w-full text-red-500 bg-white hover:bg-red-500 hover:text-white hover:font-bold rounded-md">Logout</button>
+                    </form>
                 </div>
             </div>
 
