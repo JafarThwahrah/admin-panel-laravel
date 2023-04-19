@@ -15,21 +15,23 @@
             <div class="w-1/4 bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 flex flex-col">
 
-                    <h2 class="p-3 text-2xl font-bold">Admin Panel</h2>
+                    <h2 class="p-3 text-2xl font-bold"> <i class="fa-solid fa-chart-simple"></i> Admin Panel</h2>
                     <hr>
 
                     <a href="/dashboard" class="{{ $tabs_style }}">
-                        Companies
+                        <i class="fa-solid fa-building fa-lg m-1"></i> Companies
                     </a>
+
                     <hr>
                     <a href="/dashboard/employees" class="{{ $tabs_style }}">
-                        Employees
+                        <i class="fa-solid fa-user-tie fa-lg m-1"></i>Employees
                     </a>
                     <hr>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button type="submit"
-                            class="p-3 text-left w-full text-red-500 bg-white hover:bg-red-500 hover:text-white hover:font-bold rounded-md">Logout</button>
+                            class="p-3 text-left w-full text-red-500 bg-white hover:bg-red-500 hover:text-white hover:font-bold rounded-md"><i
+                                class="fa-solid fa-right-from-bracket fa-lg m-1"></i>Logout</button>
                     </form>
                 </div>
             </div>
