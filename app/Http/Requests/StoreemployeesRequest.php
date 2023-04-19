@@ -24,7 +24,7 @@ class StoreemployeesRequest extends FormRequest
         return [
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            'phone' => ['nullable', 'string', 'regex:/^07[0-9]{7,}$/'],
+            'phone' => ['nullable', 'string', 'regex:/^7[0-9]{7,}$/'],
         ];
     }
 }

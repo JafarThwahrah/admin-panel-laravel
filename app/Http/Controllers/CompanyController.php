@@ -45,7 +45,7 @@ class CompanyController extends Controller
             'logo' => $logo_name,
         ]);
 
-        return redirect('/dashboard');
+        return redirect('/dashboard')->with('mssg', 'Company created successfully');
 
     }
 
@@ -92,7 +92,7 @@ class CompanyController extends Controller
         } else {
             $company->update($request->all());
         }
-        return redirect('/dashboard');
+        return redirect('/dashboard')->with('mssg', 'Company information updated successfully');
     }
 
     /**
@@ -103,7 +103,7 @@ class CompanyController extends Controller
         $company = Company::find($id);
         $company->delete();
 
-        return redirect('/dashboard');
+        return redirect('/dashboard')->with('mssg', 'Company deleted successfully');
 
     }
 }

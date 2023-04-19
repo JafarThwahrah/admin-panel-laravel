@@ -46,7 +46,7 @@ class EmployeeController extends Controller
 
         ]);
 
-        return redirect('/dashboard/employees');
+        return redirect('/dashboard/employees')->with('mssg', 'Employee created successfully');
     }
 
     /**
@@ -78,7 +78,7 @@ class EmployeeController extends Controller
         $employee = Employee::find($id);
         $employee->update($request->all());
 
-        return redirect('/dashboard/employees');
+        return redirect('/dashboard/employees')->with('mssg', 'Employee information updated successfully');
 
     }
 
@@ -90,6 +90,6 @@ class EmployeeController extends Controller
         $employee = Employee::find($id);
         $employee->delete();
 
-        return redirect('/dashboard/employees');
+        return redirect('/dashboard/employees')->with('mssg', 'Employee Deleted successfully');
     }
 }

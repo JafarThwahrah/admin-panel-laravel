@@ -9,6 +9,13 @@
             type="button">
             Create New Employee
         </button>
+
+        @if (session('mssg'))
+            <div class="flex justify-center">
+
+                <h3 class="bg-green-400 text-white p-3 rounded-md">{{ session('mssg') }}</h3>
+            </div>
+        @endif
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -144,17 +151,16 @@
 
                         </td>
                         <td class="px-6 py-4 flex">
-                            {{-- <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a> --}}
 
                             <a href="/dashboard/employees/view/{{ $employee->id }}"><i
-                                    class="fa-solid fa-eye p-2 bg-yellow-300 rounded-md m-1"></i></a>
+                                    class="fa-solid fa-eye p-3 bg-yellow-300 rounded-md m-1"></i></a>
                             <a href="/dashboard/employees/edit/{{ $employee->id }}"><i
-                                    class="fa-solid fa-pen-to-square p-2 bg-cyan-300 rounded-md m-1"></i></a>
+                                    class="fa-solid fa-pen-to-square p-3 bg-cyan-300 rounded-md m-1"></i></a>
                             <form action="{{ route('employee.destroy', $employee->id) }}" method="POST"> @csrf
                                 @method('DELETE')
                                 <button class="/dashboard/employees/{{ $employee->id }}" type="submit"
                                     onClick="return confirm('Do you really want to delete');"><i
-                                        class="fa-solid fa-trash p-2 bg-red-500 rounded-md m-1 text-white"></i></button>
+                                        class="fa-solid fa-trash p-3 bg-red-500 rounded-md m-1 text-white"></i></button>
                             </form>
 
 

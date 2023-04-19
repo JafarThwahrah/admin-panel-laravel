@@ -12,6 +12,13 @@
             Create New Company
         </button>
 
+        @if (session('mssg'))
+            <div class="flex justify-center">
+
+                <h3 class="bg-green-400 text-white p-3 rounded-md">{{ session('mssg') }}</h3>
+            </div>
+        @endif
+
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -116,10 +123,7 @@
                             {{ $company->email }}
                         </td>
                         <td class="px-6 py-4">
-                            {{-- <img style="width:2rem; height:2rem;"
-                                src="C:\Users\tr.jafar.thwahrah\Desktop\code\Laravel Task\admin-panel-laravel\public\storage\{{ $company->logo }}"
-                                
-                                alt="logo"> --}}
+
                             <img style="width:2rem; height:2rem; border-radius:50%;"
                                 src="{{ asset('storage/' . $company->logo) }}" alt="Company Logo">
 
@@ -128,17 +132,16 @@
                             <a class="underline text-blue-600" href="{{ $company->website }}">Website Link</a>
                         </td>
                         <td class="px-6 py-4 flex">
-                            {{-- <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a> --}}
 
                             <a href="/dashboard/companies/view/{{ $company->id }}"><i
-                                    class="fa-solid fa-eye p-2 bg-yellow-300 rounded-md m-1"></i></a>
+                                    class="fa-solid fa-eye p-3 bg-yellow-300 rounded-md m-1"></i></a>
                             <a href="/dashboard/companies/edit/{{ $company->id }}"><i
-                                    class="fa-solid fa-pen-to-square p-2 bg-cyan-300 rounded-md m-1"></i></a>
+                                    class="fa-solid fa-pen-to-square p-3 bg-cyan-300 rounded-md m-1"></i></a>
                             <form action="{{ route('company.destroy', $company->id) }}" method="POST"> @csrf
                                 @method('DELETE')
                                 <button class="/dashboard/companies/{{ $company->id }}" type="submit"
                                     onClick="return confirm('Do you really want to delete');"><i
-                                        class="fa-solid fa-trash p-2 bg-red-500 rounded-md m-1 text-white"></i></button>
+                                        class="fa-solid fa-trash p-3 bg-red-500 rounded-md m-1 text-white"></i></button>
                             </form>
 
 
