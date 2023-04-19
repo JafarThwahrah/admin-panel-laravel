@@ -17,10 +17,9 @@ class EmployeeController extends Controller
     {
 
         $companies = Company::all();
-        $employees = Employee::all();
-        return view('adminComponents.employees', compact('companies', 'employees'));
+        $employees = DB::table('employees')->join('companies', 'employees.company_id', '=', 'companies.id')->select('employees.id', 'employees.first_name', 'employees.last_name', 'employees.phone', 'employees.email', 'companies.name')->paginate(10);
 
-        // return view('adminComponents.companies', compact('companies'));
+        return view('adminComponents.employees', compact('companies', 'employees'));
 
     }
 
@@ -38,38 +37,59 @@ class EmployeeController extends Controller
     public function store(StoreemployeesRequest $request)
     {
 
-        dd($request);
+        Employee::create([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'company_id' => $request->company,
+
+        ]);
+
+        return redirect('/dashboard/employees');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Employee $employees)
+    public function show($id)
     {
-        //
+        // $employee = Employee::findOrFail($id);
+        $employee = DB::table('employees')->join('companies', 'employees.company_id', '=', 'companies.id')->where('employees.id', $id)->select('employees.id', 'employees.first_name', 'employees.last_name', 'employees.phone', 'employees.email', 'companies.name')->get();
+        return view('adminComponents.employeesComponents.view_employee', compact('employee'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Employee $employees)
+    public function edit($id)
     {
-        //
+        $employee = Employee::find($id);
+        $companies = Company::all();
+
+        return view('adminComponents.employeesComponents.edit_employee', compact('companies', 'employee'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateemployeesRequest $request, Employee $employees)
+    public function update(UpdateemployeesRequest $request, $id)
     {
-        //
+        $employee = Employee::find($id);
+        $employee->update($request->all());
+
+        return redirect('/dashboard/employees');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Employee $employees)
+    public function destroy($id)
     {
-        //
+        $employee = Employee::find($id);
+        $employee->delete();
+
+        return redirect('/dashboard/employees');
     }
 }

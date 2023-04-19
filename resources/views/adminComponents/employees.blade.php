@@ -1,7 +1,7 @@
 @extends('dashboard')
 
 @section('content')
-    <div class="mb-5">
+    <div class="mb-5 flex justify-between">
 
         <!-- Modal toggle -->
         <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
@@ -9,7 +9,15 @@
             type="button">
             Create New Employee
         </button>
-
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li class="text-red-600 font-bold">{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <!-- Main modal -->
         <div id="authentication-modal" tabindex="-1" aria-hidden="true"
             class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -33,25 +41,35 @@
                             @csrf
 
                             <div>
-                                <label for="fname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                <label for="first_name"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                     First Name</label>
-                                <input type="text" name="fname" id="fname"
+                                <input type="text" name="first_name" id="first_name"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                     required>
                             </div>
 
                             <div>
-                                <label for="fname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                     Last Name</label>
-                                <input type="text" name="lname" id="lname"
+                                <input type="text" name="last_name" id="last_name"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                     required>
                             </div>
                             <div>
                                 <label for="company" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                     Company</label>
-                                <input type="text" name="company" id="company"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
+
+                                <select
+                                    class="cursor-pointer bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                    id="company" name="company">
+
+                                    @foreach ($companies as $company)
+                                        <option value="{{ $company->id }}">{{ $company->name }}
+                                        </option>
+                                    @endforeach
+
+                                </select>
                             </div>
                             <div>
                                 <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -81,75 +99,71 @@
             <thead class="text-xs text-gray-700 uppercase bg-black text-white">
                 <tr>
                     <th scope="col" class="px-6 py-3">
-                        Product name
+                        First Name
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Color
+                        Last Name
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Category
+                        Email
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Price
+                        Company Name
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Action
+                        Phone Number
+                    </th>
+
+                    <th scope="col" class="px-6 py-3">
+                        Actions
                     </th>
                 </tr>
             </thead>
             <tbody>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Apple MacBook Pro 17"
-                    </th>
-                    <td class="px-6 py-4">
-                        Silver
-                    </td>
-                    <td class="px-6 py-4">
-                        Laptop
-                    </td>
-                    <td class="px-6 py-4">
-                        $2999
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                    </td>
-                </tr>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Microsoft Surface Pro
-                    </th>
-                    <td class="px-6 py-4">
-                        White
-                    </td>
-                    <td class="px-6 py-4">
-                        Laptop PC
-                    </td>
-                    <td class="px-6 py-4">
-                        $1999
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                    </td>
-                </tr>
-                <tr class="bg-white dark:bg-gray-800">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Magic Mouse 2
-                    </th>
-                    <td class="px-6 py-4">
-                        Black
-                    </td>
-                    <td class="px-6 py-4">
-                        Accessories
-                    </td>
-                    <td class="px-6 py-4">
-                        $99
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                    </td>
-                </tr>
+                @foreach ($employees as $employee)
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {{ $employee->first_name }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $employee->last_name }}
+                        </td>
+                        <td class="px-6 py-4">
+
+                            {{ $employee->email }}
+
+
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $employee->name }}
+
+                        </td>
+
+                        <td class="px-6 py-4">
+                            {{ $employee->phone }}
+
+                        </td>
+                        <td class="px-6 py-4 flex">
+                            {{-- <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a> --}}
+
+                            <a href="/dashboard/employees/view/{{ $employee->id }}"><i
+                                    class="fa-solid fa-eye p-2 bg-yellow-300 rounded-md m-1"></i></a>
+                            <a href="/dashboard/employees/edit/{{ $employee->id }}"><i
+                                    class="fa-solid fa-pen-to-square p-2 bg-cyan-300 rounded-md m-1"></i></a>
+                            <form action="{{ route('employee.destroy', $employee->id) }}" method="POST"> @csrf
+                                @method('DELETE')
+                                <button class="/dashboard/employees/{{ $employee->id }}" type="submit"
+                                    onClick="return confirm('Do you really want to delete');"><i
+                                        class="fa-solid fa-trash p-2 bg-red-500 rounded-md m-1 text-white"></i></button>
+                            </form>
+
+
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
+        {{ $employees->links() }}
+
     </div>
 @endsection
